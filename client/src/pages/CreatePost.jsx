@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { preview } from '../assets';
 import { getRandomPrompt } from '../utils';
@@ -22,7 +22,7 @@ const CreatePost = () => {
         const response = await fetch('http://localhost:8000/api/v1/imgGenerate', {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer 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`,
+            'Authorization': `Bearer ${process.env.REACT_APP_HF_TOKEN}`,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
@@ -38,9 +38,9 @@ const CreatePost = () => {
         setGeneratingImg(false);
       }
     } else {
-      alert("Please Provide a prompt")
+      alert("Please provide a prompt");
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,27 +52,26 @@ const CreatePost = () => {
         const response = await fetch('http://localhost:8000/api/v1/post', {
           method: 'POST',
           headers: {
-            // 'Authorization': `Bearer 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`,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(form)
-        })
+          body: JSON.stringify(form),
+        });
 
         await response.json();
         navigate("/");
       } catch (error) {
-        alert(error)
+        alert(error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     } else {
       alert("Please enter a prompt and generate an image");
     }
-  }
+  };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
@@ -82,11 +81,12 @@ const CreatePost = () => {
   return (
     <section className="max-w-7xl mx-auto bg-gray-900 text-gray-100 p-8 rounded-2xl">
       <div className="justify-center text-center">
-        {/* <h1 className="font-extrabold text-[#222328] text-4xl sm:text-5xl mb-4">Create AI Images</h1>
-        <p className="text-[#666e75] text-lg max-w-md mx-auto">Unleash the power of our AI model from Hugging Face to turn your wildest ideas into stunning visual creations. Share your imagination with the community and bring your dreams to life!</p> */}
-
-        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl">Create <mark className="px-2 text-white bg-blue-600 rounded">AI</mark> Images</h1>
-        <p className="text-lg font-normal text-gray-400 lg:text-xl">Unleash the power of our AI model from Hugging Face to turn your wildest ideas into stunning visual creations. Share your imagination with the community and bring your dreams to life!</p>
+        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl">
+          Create <mark className="px-2 text-white bg-blue-600 rounded">AI</mark> Images
+        </h1>
+        <p className="text-lg font-normal text-gray-400 lg:text-xl">
+          Unleash the power of our AI model from Hugging Face to turn your wildest ideas into stunning visual creations. Share your imagination with the community and bring your dreams to life!
+        </p>
       </div>
 
       <form className="mt-16 max-w-3xl bg-gray-950 p-8 rounded-2xl" onSubmit={handleSubmit}>
@@ -95,7 +95,7 @@ const CreatePost = () => {
             labelName="Your Name"
             type="text"
             name="name"
-            placeholder="Ex. Nikhil Dixit"
+            placeholder="Enter Your name"
             value={form.name}
             handleChange={handleChange}
           />
@@ -111,7 +111,7 @@ const CreatePost = () => {
             handleSurpriseMe={handleSurpriseMe}
           />
 
-          <div className="relative bg-gradient-to-b from-[#23272e] to-[#1a1d23] border border-gray-700 text-gray-100 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+          <div className="relative bg-gradient-to-b from-[#23272e] to-[#1a1d23] border border-gray-700 text-gray-100 text-sm rounded-2xl w-64 p-3 h-64 flex justify-center items-center overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
             {form.photo ? (
               <img
                 src={form.photo}
@@ -147,14 +147,13 @@ const CreatePost = () => {
           </button>
         </div>
 
-
         <div className="mt-10">
           <p className="mt-2 text-[#666e75] text-[14px]">
             <strong>Ready to showcase your creation?</strong> Share your imaginative image with the community!
           </p>
           <button
             type="submit"
-            className={`mt-4 text-white bg-gradient-to-r from-[#3B82F6] to-[#2563EB] font-medium rounded-md text-sm w-full sm:w-auto px-6 py-3 focus:outline-none transition-all duration-300 hover:opacity-90 transform hover:scale-105`}
+            className="mt-4 text-white bg-gradient-to-r from-[#3B82F6] to-[#2563EB] font-medium rounded-md text-sm w-full sm:w-auto px-6 py-3 focus:outline-none transition-all duration-300 hover:opacity-90 transform hover:scale-105"
             disabled={loading}
           >
             {loading ? 'Sharing...' : 'Share with the Community'}
