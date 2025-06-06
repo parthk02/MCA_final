@@ -18,7 +18,7 @@ const App = () => {
               Create
             </Link>
 
-            <Link to="https://github.com/nikhildixit27/AI-Image-Generator" target='_blank' className='flex border-white border-2 font-medium text-white px-2 py-2 rounded-md'>
+            <Link to="https://github.com/parthk02/MCA_final" target='_blank' className='flex border-white border-2 font-medium text-white px-2 py-2 rounded-md'>
               <img src={github} alt="git" className='w-6 h-6 mx-1' />
             </Link>
           </div>
