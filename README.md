@@ -22,7 +22,7 @@ Welcome to our Text-to-Image Generator project! This application utilizes cuttin
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/nikhildixit27/AI-Image-Generator
+    git clone this repo
     ```
 
 2. Navigate to the project directory:
@@ -69,9 +69,6 @@ Welcome to our Text-to-Image Generator project! This application utilizes cuttin
 
 8. Access the application at `http://localhost:3000`.
 
-## Live Project
-
-You can access the live project [here](https://texttoimg.vercel.app/).
 
 ## API Endpoints
 
@@ -96,6 +93,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 For any inquiries or feedback, please contact:
 
-- **Name:** Nikhil Dixit
-- **Email:** nikhildixit2125@gmail.com
-- **LinkedIn:** [nikhildixit27](https://www.linkedin.com/in/nikhildixit27/)
+- **Name:** Parth Kashyap
+- **Email:** parthsunilkashyap@gmail.com
